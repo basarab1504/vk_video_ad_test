@@ -3,6 +3,6 @@ console.log("helloooooooo");
 vkBridge.send('VKWebAppInit');
 
 // Подписка на событие-результат
-bridge.subscribe((e) => {
+vkBridge.subscribe((e) => {
     console.log(e);
 });
