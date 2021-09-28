@@ -12,7 +12,8 @@ function vkBridgeEventsListener(e) {
         var id = data.request_id;
         var callback = this.vkBridgeCallbacks[id] || [];
         if (callback) {
-            callback(JSON.stringify(e));
+            console.log(callback);
+            console.log(JSON.stringify(e));
         }
     }
     // console.log(e);
@@ -20,12 +21,12 @@ function vkBridgeEventsListener(e) {
 
 function checkAd() {
     console.log("checkAd");
-    this.vkBridgeCallbacks["o1"] = (arg) => { console.log(arg) };
+    this.vkBridgeCallbacks["o1"] = "hello";
     vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "reward", "request_id": "o1" });
 }
 
 function showAd() {
     console.log("showAd");
-    this.vkBridgeCallbacks["o2"] = (arg) => { console.log(arg) };
+    this.vkBridgeCallbacks["o2"] = "how" };
     vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "reward", "request_id": "o2" });
 }
