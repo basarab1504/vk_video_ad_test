@@ -7,8 +7,7 @@ vkBridge.subscribe(vkBridgeEventsListener);
 
 function vkBridgeEventsListener(e) {
     var data = e.detail.data;
-    if (data)
-    {
+    if (data) {
         var id = data.request_id;
         var callback = this.vkBridgeCallbacks[id] || [];
         if (callback) {
@@ -27,6 +26,6 @@ function checkAd() {
 
 function showAd() {
     console.log("showAd");
-    this.vkBridgeCallbacks["o2"] = "how" };
+    this.vkBridgeCallbacks["o2"] = "how";
     vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "reward", "request_id": "o2" });
 }
