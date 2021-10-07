@@ -13,18 +13,18 @@ function vkBridgeEventsListener(e) {
         var callback = this.vkBridgeCallbacks[id];
         if (callback) {
             var response = {
-                'callback_id': callback.data.request_id,
+                'callback_id': data.request_id,
                 'response': {
-                    'status': data.status,
-                    'data': data.detail,
-                    'error': data.error
+                    'status': detail.status,
+                    'data': detail,
+                    'error': detail.error
                 }
             };
 
             console.log("vkBridge response =");
             console.log(response);
 
-            VKUnity.sendMessage(callback, JSON.stringify(response));
+//             VKUnity.sendMessage(callback, JSON.stringify(response));
         }
     }
 }
