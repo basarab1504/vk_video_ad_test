@@ -12,17 +12,18 @@ function vkBridgeEventsListener(e) {
         var id = data.request_id;
         var callback = this.vkBridgeCallbacks[id];
         if (callback) {
+            data.type = detail.type;
             var response = {
                 'callback_id': data.request_id,
                 'response': {
                     'status': detail.status,
-                    'data': detail,
+                    'data': data,
                     'error': detail.error
                 }
             };
 
             console.log("vkBridge response =");
-            console.log(response);
+            console.log(JSON.stringify(response));
 
 //             VKUnity.sendMessage(callback, JSON.stringify(response));
         }
