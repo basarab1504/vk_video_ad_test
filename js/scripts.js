@@ -6,16 +6,27 @@ vkBridge.send('VKWebAppInit');
 vkBridge.subscribe(vkBridgeEventsListener);
 
 function vkBridgeEventsListener(e) {
-    var data = e.detail.data;
+    var detail = e.detail
+    var data = detail.data;
     if (data) {
         var id = data.request_id;
-        var callback = this.vkBridgeCallbacks[id] || [];
+        var callback = this.vkBridgeCallbacks[id];
         if (callback) {
-            console.log(callback);
-            console.log(JSON.stringify(e));
+            var response = {
+                'callback_id': callback.data.request_id,
+                'response': {
+                    'status': data.status,
+                    'data': data.detail,
+                    'error': data.error
+                }
+            };
+
+            console.log("vkBridge response =");
+            console.log(response);
+
+            VKUnity.sendMessage(callback, JSON.stringify(response));
         }
     }
-    // console.log(e);
 }
 
 function checkAd() {
