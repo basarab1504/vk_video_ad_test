@@ -25,19 +25,27 @@ function vkBridgeEventsListener(e) {
             console.log("vkBridge response =");
             console.log(JSON.stringify(response));
 
-//             VKUnity.sendMessage(callback, JSON.stringify(response));
+            //             VKUnity.sendMessage(callback, JSON.stringify(response));
         }
     }
 }
 
+function bridge(method, params, callback_id) {
+    console.log("JS call VKBridge (" + method + ")");
+
+    params["request_id"] = callback_id;
+
+    console.log(params);
+
+    this.vkBridgeCallbacks[callback_id] = method;
+    vkBridge.send(method, params);
+}
+
 function checkAd() {
-    console.log("checkAd");
-    this.vkBridgeCallbacks["o1"] = "hello";
-    vkBridge.send("VKWebAppCheckNativeAds", { "ad_format": "reward", "request_id": "o1" });
+    bridge("VKWebAppCheckNativeAds", { "ad_format": "reward" }, "o1");
 }
 
 function showAd() {
     console.log("showAd");
-    this.vkBridgeCallbacks["o2"] = "how";
-    vkBridge.send("VKWebAppShowNativeAds", { "ad_format": "reward", "request_id": "o2" });
+    bridge("VKWebAppShowNativeAds", { "ad_format": "reward" }, "o2");
 }
