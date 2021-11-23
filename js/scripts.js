@@ -3,7 +3,7 @@ var vkBridgeCallbacks = {};
 vkBridge.send('VKWebAppInit');
 
 // Подписка на событие-результат
-vkBridge.subscribe(vkBridgeEventsListener);
+// vkBridge.subscribe(vkBridgeEventsListener);
 
 function vkBridgeEventsListener(e) {
     var detail = e.detail
@@ -42,10 +42,16 @@ function bridge(method, params, callback_id) {
 }
 
 function checkAd() {
-    bridge("VKWebAppCheckNativeAds", { "ad_format": "reward" }, "o1");
+    // bridge("VKWebAppCheckNativeAds", { "ad_format": "reward" }, "o1");
+    vkBridge.send("VKWebAppShowNativeAds", { ad_format: "reward" })
+        .then(data => console.log(data.result))
+        .catch(error => console.log(error));
 }
 
 function showAd() {
     console.log("showAd");
-    bridge("VKWebAppShowNativeAds", { "ad_format": "reward" }, "o2");
+    // bridge("VKWebAppShowNativeAds", { "ad_format": "reward" }, "o2");
+    vkBridge.send("VKWebAppShowNativeAds", { ad_format: "reward" })
+        .then(data => console.log(data.result))
+        .catch(error => console.log(error));
 }
