@@ -43,7 +43,7 @@ function bridge(method, params, callback_id) {
 
 function checkAd() {
     // bridge("VKWebAppCheckNativeAds", { "ad_format": "reward" }, "o1");
-    vkBridge.send("VKWebAppShowNativeAds", { ad_format: "reward" })
+    vkBridge.send("VKWebAppCheckNativeAds", { ad_format: "reward" })
         .then(data => console.log(data.result))
         .catch(error => console.log(error));
 }
